@@ -1,6 +1,9 @@
 import { auth, db } from "/Main/config.js";
 import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
-import { collection, addDoc } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
+import {
+  collection,
+  addDoc,
+} from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
 
 let profileImageUrl = "";
 
@@ -20,7 +23,7 @@ let myWidget = cloudinary.createUploadWidget(
 
 document.getElementById("upload_widget").addEventListener(
   "click",
-  function () {
+  () => {
     myWidget.open();
   },
   false
@@ -39,13 +42,7 @@ submit.addEventListener("click", async (event) => {
     alert("Please fill in all fields");
     return;
   }
-
-  if (!profileImageUrl) {
-    alert("Please upload a profile picture");
-    return;
-  }
-
-  try {
+  
     const userCredential = await createUserWithEmailAndPassword(
       auth,
       email.value,
@@ -53,12 +50,12 @@ submit.addEventListener("click", async (event) => {
     );
 
     const user = userCredential.user;
-
+try {
     await addDoc(collection(db, "userData"), {
       userUid: user.uid,
       username: username.value,
       email: email.value,
-      userProfile: profileImageUrl, // Store uploaded profile URL
+      userProfile: profileImageUrl,
     });
 
     console.log("User created & data stored:", user);
