@@ -23,5 +23,5 @@ loginbtn.addEventListener("click", (e) => {
   password.value = "";
 
   // Redirect to home page
-  window.location.href = "/Dashboard/dash.html";
+  window.location.href = "/index.html";
 });
