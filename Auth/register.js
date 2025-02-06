@@ -42,15 +42,15 @@ submit.addEventListener("click", async (event) => {
     alert("Please fill in all fields");
     return;
   }
-  
-    const userCredential = await createUserWithEmailAndPassword(
-      auth,
-      email.value,
-      password.value
-    );
 
-    const user = userCredential.user;
-try {
+  const userCredential = await createUserWithEmailAndPassword(
+    auth,
+    email.value,
+    password.value
+  );
+
+  const user = userCredential.user;
+  try {
     await addDoc(collection(db, "userData"), {
       userUid: user.uid,
       username: username.value,
