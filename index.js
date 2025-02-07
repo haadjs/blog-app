@@ -4,7 +4,17 @@ import {
   doc,
   collection,
 } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
-import {signOut } from 'https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js'
+import {signOut , onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js'
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    const uid = user.uid;
+    
+  } else {
+    // No user is signed in.
+    window.location.href = "/Auth/login.html";
+  }
+});
 
 
 // itnitialize all Variable
