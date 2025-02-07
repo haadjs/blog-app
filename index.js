@@ -11,6 +11,7 @@ import {signOut , onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/
 onAuthStateChanged(auth, (user) => {
   if (user) {
     const uid = user.uid;
+    console.log(uid); 
     
   } else {
     // No user is signed in.
@@ -51,6 +52,7 @@ logoutBtn.addEventListener('click', () => {
 
 // Get the image and the name of the user
 let getuserName = async () => {
+  
   const q = query(collection(db, "userData"), where("userUid", "==", auth.currentUser.uid));
 
   const querySnapshot = await getDocs(q);
