@@ -3,6 +3,8 @@ import {
   getDocs,
   doc,
   collection,
+  where ,
+  query
 } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
 import {signOut , onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js'
 
@@ -49,7 +51,9 @@ logoutBtn.addEventListener('click', () => {
 
 // Get the image and the name of the user
 let getuserName = async () => {
-  const querySnapshot = await getDocs(collection(db, "userData"));
+  const q = query(collection(db, "userData"), where("userUid", "==", auth.currentUser.uid));
+
+  const querySnapshot = await getDocs(q);
   querySnapshot.forEach((doc) => {
     Data.push(doc.data());
     userName.innerHTML = ` Welcome,${doc.data().username}`;
