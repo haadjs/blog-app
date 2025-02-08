@@ -15,6 +15,7 @@ onAuthStateChanged(auth, (user) => {
   if (user) {
     const uid = user.uid;
     console.log(uid);
+    getuserName()
   
   } else {
     // No user is signed in.
@@ -52,7 +53,9 @@ logoutBtn.addEventListener("click", () => {
 
 // Get the image and the name of the user
 let getuserName = async ( ) => {
-  const querySnapshot = await getDocs(collection(db, "userData"));
+  const citiesRef = collection(db, "userData")
+  const q = query(citiesRef, where("userUid", "==", auth.currentUser.uid));
+  const querySnapshot = await getDocs(q);
   querySnapshot.forEach((doc) => {
     console.log(doc.data());
     userName.innerHTML = doc.data().username;
