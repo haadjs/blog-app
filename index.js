@@ -15,8 +15,7 @@ onAuthStateChanged(auth, (user) => {
   if (user) {
     const uid = user.uid;
     console.log(uid);
-    getuserName()
-  
+    getuserName();
   } else {
     // No user is signed in.
     window.location.href = "/Auth/login.html";
@@ -36,7 +35,7 @@ let login = true;
 if (!login) {
   logInBtn.style.display = "block";
   logoutBtn.style.display = "none";
-} else{
+} else {
   logInBtn.style.display = "none";
   logoutBtn.style.display = "block";
 }
@@ -52,8 +51,8 @@ logoutBtn.addEventListener("click", () => {
 });
 
 // Get the image and the name of the user
-let getuserName = async ( ) => {
-  const citiesRef = collection(db, "userData")
+let getuserName = async () => {
+  const citiesRef = collection(db, "userData");
   const q = query(citiesRef, where("userUid", "==", auth.currentUser.uid));
   const querySnapshot = await getDocs(q);
   querySnapshot.forEach((doc) => {
@@ -61,4 +60,4 @@ let getuserName = async ( ) => {
     userName.innerHTML = doc.data().username;
     imgSrc.src = doc.data().userProfile;
   });
-}
+};

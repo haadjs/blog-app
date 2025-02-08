@@ -32,7 +32,7 @@ document.getElementById("upload_widget").addEventListener(
 let username = document.querySelector("#username");
 let email = document.querySelector("#email");
 let password = document.querySelector("#password");
-let submit = document.querySelector("#submit");
+let submit = document.querySelector(".login-btn");
 
 // Sign up with email and password
 submit.addEventListener("click", async (event) => {
