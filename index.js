@@ -62,4 +62,3 @@ let getuserName = async ( ) => {
     imgSrc.src = doc.data().userProfile;
   });
 }
-getuserName()
