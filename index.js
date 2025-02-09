@@ -11,6 +11,11 @@ import {
   onAuthStateChanged,
 } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
 
+let Data = [];
+let userName = document.querySelector("#Username");
+let imgSrc = document.querySelector("#profileImg");
+let logoutBtn = document.querySelector("#logBtn");
+let logInBtn = document.querySelector("#logInBtn");
 onAuthStateChanged(auth, (user) => {
   if (user) {
     const uid = user.uid;
@@ -22,22 +27,18 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
-// itnitialize all Variable
-let Data = [];
-let userName = document.querySelector("#Username");
-let imgSrc = document.querySelector("#profileImg");
-let logoutBtn = document.querySelector("#logBtn");
-let logInBtn = document.querySelector("#logInBtn");
 
-// Logout Function
+
 let login = true;
 
 if (!login) {
   logInBtn.style.display = "block";
   logoutBtn.style.display = "none";
+  login = false;
 } else {
   logInBtn.style.display = "none";
   logoutBtn.style.display = "block";
+  login = true;
 }
 
 logoutBtn.addEventListener("click", () => {
