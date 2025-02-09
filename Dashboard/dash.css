@@ -1,0 +1,69 @@
+body {
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Smooth Fade-in and Slide-Up Animation */
+.dashboard-container {
+    max-width: 600px;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    transform: translateY(50px);
+    animation: fadeSlideIn 0.8s ease-in-out forwards;
+}
+
+/* Keyframe for Entry Animation */
+@keyframes fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Form Fields Focus Effect */
+.form-control {
+    transition: all 0.3s ease-in-out;
+    border-radius: 6px;
+}
+.form-control:focus {
+    box-shadow: 0 0 15px rgba(0, 123, 255, 0.4);
+    transform: scale(1.03);
+    border-color: #007bff;
+}
+
+/* Publish Button Styling */
+.btn-publish {
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+    color: white;
+    transition: all 0.3s ease-in-out;
+    font-weight: bold;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    width: 100%;
+}
+
+/* Button Hover Effect */
+.btn-publish:hover {
+    background: linear-gradient(45deg, #ff4b2b, #ff416c);
+    transform: scale(1.01);
+    box-shadow: 0 4px 12px rgba(255, 65, 108, 0.5);
+    transition: 0.5s;
+}
+
+/* Subtle Glow Effect on Form */
+.dashboard-container:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    transition: 0.3s ease-in-out;
+}
