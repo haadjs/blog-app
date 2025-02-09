@@ -19,27 +19,22 @@ let logInBtn = document.querySelector("#logInBtn");
 onAuthStateChanged(auth, (user) => {
   if (user) {
     const uid = user.uid;
+    logInBtn.style.display = "none";
+    logoutBtn.style.display = "block";
     console.log(uid);
     getuserName();
   } else {
-    // No user is signed in.
-    window.location.href = "/Auth/login.html";
+    logInBtn.style.display = "block";
+    logoutBtn.style.display = "none";
   }
 });
+logInBtn.addEventListener('click', () => {
+  window.location.href = "/Auth/login.html";
+})
+logoutBtn.addEventListener('click', () => {
+  window.location.href = "./Auth/login.html";
+})
 
-
-
-let login = true;
-
-if (!login) {
-  logInBtn.style.display = "block";
-  logoutBtn.style.display = "none";
-  login = false;
-} else {
-  logInBtn.style.display = "none";
-  logoutBtn.style.display = "block";
-  login = true;
-}
 
 logoutBtn.addEventListener("click", () => {
   signOut(auth)
@@ -48,6 +43,7 @@ logoutBtn.addEventListener("click", () => {
     })
     .catch((error) => {
       // An error happened.
+      alert.error("Sign Out Error:", error.message);
     });
 });
 
@@ -58,7 +54,7 @@ let getuserName = async () => {
   const querySnapshot = await getDocs(q);
   querySnapshot.forEach((doc) => {
     console.log(doc.data());
-    userName.innerHTML = doc.data().username;
+    userName.innerHTML = `Welcome,${doc.data().username}`;
     imgSrc.src = doc.data().userProfile;
   });
 };
