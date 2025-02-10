@@ -67,3 +67,18 @@ body {
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
     transition: 0.3s ease-in-out;
 }
+
+#upload_widget{
+    padding: 10px;
+    border-radius: 20px;
+    border: 2px dashed #020202;
+    cursor: pointer;
+    transition: border-color 0.3s;
+    background: #3174b8;
+    width: 10rem;
+
+}
+
+#upload_widget:hover{
+    border-color: #007bff;
+}
