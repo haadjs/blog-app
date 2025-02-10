@@ -16,6 +16,7 @@ let userName = document.querySelector("#Username");
 let imgSrc = document.querySelector("#profileImg");
 let logoutBtn = document.querySelector("#logBtn");
 let logInBtn = document.querySelector("#logInBtn");
+let dashboard = document.querySelector("#dashboard");
 onAuthStateChanged(auth, (user) => {
   if (user) {
     const uid = user.uid;
@@ -26,20 +27,21 @@ onAuthStateChanged(auth, (user) => {
   } else {
     logInBtn.style.display = "block";
     logoutBtn.style.display = "none";
+    document.getElementById("dashboard").disabled = true;
   }
 });
-logInBtn.addEventListener('click', () => {
-  window.location.href = "/Auth/login.html";
-})
-logoutBtn.addEventListener('click', () => {
-  window.location.href = "./Auth/login.html";
-})
 
+dashboard.addEventListener("click", () => {
+  window.location.href = "/Dashboard/dash.html";
+});
+logInBtn.addEventListener("click", () => {
+  window.location.href = "/Auth/login.html";
+});
 
 logoutBtn.addEventListener("click", () => {
   signOut(auth)
     .then(() => {
-      window.location.href = "/Auth/login.html";
+      // window.location.href = "/Auth/login.html";
     })
     .catch((error) => {
       // An error happened.

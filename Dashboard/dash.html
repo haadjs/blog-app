@@ -1,39 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blog Dashboard</title>
-    <link rel="stylesheet" href="dash.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-
-    <div class="container">
-        <div class="dashboard-container">
-            <h3 class="text-center mb-4">Create a Blog Post</h3>
-            <form>
-                <div class="mb-3">
-                    <label for="title" class="form-label">Title</label>
-                    <input type="text" class="form-control" id="title" placeholder="Enter post title">
-                </div>
-                <div class="mb-3">
-                    <label for="description" class="form-label">Description</label>
-                    <textarea class="form-control" id="description" rows="4" placeholder="Write your blog content here..."></textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="description" class="form-label">Upload a Image</label><br>
-                    <button type="button" id="upload_widget">Uplaod a Image</button>
-                </div>
-                
-                <button type="submit" class="btn btn-publish publish">Publish</button>
-            </form>
+    <link rel="stylesheet" href="dash.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-lg p-3">
+        <div class="container-fluid">
+          <a class="navbar-brand fw-bold" href="#">Blog Dashboard</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="/index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  id="dashboardLink"
+                  href="/Dashboard/dash.html"
+                  >Dashboard</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link btn btn-danger text-white px-3"
+                  id="logoutBtn"
+                  href="/Auth/login.html"
+                  >Logout</a
+                >
+              </li>
+            </ul>
+          </div>
         </div>
+      </nav>
     </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://upload-widget.cloudinary.com/latest/global/all.js" type="text/javascript"></script>
+    <div class="container d-flex flex-column align-items-center mt-5">
+      <!-- Blog Post Section -->
+      <div class="blog-container mt-4">
+        <h3 class="text-center mb-4">Create a Blog Post</h3>
+        <form>
+          <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input
+              type="text"
+              class="form-control"
+              id="title"
+              placeholder="Enter post title"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea
+              class="form-control"
+              id="description"
+              rows="6"
+              placeholder="Write your blog content here..."
+            ></textarea>
+          </div>
+          <div class="mb-3 text-center">
+            <label for="image" class="form-label d-block"
+              >Upload an Image</label
+            >
+            <button type="button" id="upload_widget">Upload an Image</button>
+          </div>
+          <button type="submit" class="btn btn-publish publish">Publish</button>
+        </form>
+      </div>
+    </div>
 
-<script type="module" src="dash.js"></script>
-</body>
+    <!-- // <USER ALL POSTS>//> -->
+    <div class="container mt-5 cardmain">
+     
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script
+      src="https://upload-widget.cloudinary.com/latest/global/all.js"
+      type="text/javascript"
+    ></script>
+    <script type="module" src="dash.js"></script>
+  </body>
 </html>
