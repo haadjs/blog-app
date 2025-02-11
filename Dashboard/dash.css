@@ -101,14 +101,44 @@ body {
 #upload_widget:hover {
   border-color: #007bff;
 }
+/* General Styles */
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 40px auto;
+  text-align: center;
+}
+
+.title {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Blog Grid */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 20px;
+}
+
+/* Blog Card */
 .blog-card {
-  border-radius: 15px;
+  /* border-radius: 15px; */
   overflow: hidden;
   transition: all 0.3s ease-in-out;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
   background: #fff;
-  /* max-width: 800px; Increased width */
+  max-width: 100%;
   margin: auto;
+  padding: 10px;
 }
 
 .blog-card:hover {
@@ -116,44 +146,69 @@ body {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
+/* Blog Image */
 .blog-card img {
-  height: 350px; /* Increased height for a better image display */
-  object-fit: cover;
   width: 100%;
+  height: 250px;
+  object-fit: cover;
+  transition: transform 0.4s ease-in-out;
 }
 
-.blog-card .card-body {
-  padding: 30px; /* More padding for better spacing */
+.blog-card:hover img {
+  transform: scale(1.05);
 }
 
-.blog-card .card-title {
-  font-size: 2rem; /* Larger font for better readability */
+/* Card Content */
+.card-body {
+  padding: 25px;
+}
+
+.card-title {
+  font-size: 1.8rem;
   font-weight: bold;
-  color: #333;
+  color: #222;
+  margin-bottom: 10px;
 }
 
-.blog-card .card-text {
-  font-size: 1.2rem; /* Slightly larger text */
+.card-text {
+  font-size: 1.2rem;
   color: #555;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  line-height: 1.6;
 }
 
-.blog-card .post-date {
-  font-size: 1rem;
+.post-date {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
   color: #888;
+  margin-bottom: 15px;
 }
 
-.blog-card .btn-read-more {
+/* Read More Button */
+.btn-read-more {
   background: linear-gradient(45deg, #ff416c, #ff4b2b);
   color: white;
   font-weight: bold;
   padding: 12px 24px;
   border-radius: 6px;
   text-decoration: none;
-  transition: all 0.3s;
+  transition: all 0.3s ease-in-out;
+  display: inline-block;
+  font-size: 1.1rem;
 }
 
-.blog-card .btn-read-more:hover {
+.btn-read-more:hover {
   background: linear-gradient(45deg, #ff4b2b, #ff416c);
-  transform: scale(1.05);
+  transform: scale(1.08);
+  box-shadow: 0 6px 20px rgba(255, 65, 108, 0.6);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .blog-grid {
+      grid-template-columns: 1fr;
+  }
 }

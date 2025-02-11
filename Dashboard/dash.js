@@ -69,7 +69,8 @@ publishBtn.addEventListener("click", async (event) => {
     title: title.value,
     description: description.value,
     userPostImage: UserBlogImage,
-    Timestamp: new Date(),
+    Timestamp: serverTimestamp(), 
+
   });
 
   description.value = "";
@@ -82,27 +83,21 @@ let renderData = async () => {
   const querySnapshot = await getDocs(collection(db, "UserPosts"));
   querySnapshot.forEach((doc) => {
     console.log(doc.data());
-    allposts.push(doc.data());
+    allposts.unshift(doc.data());
   });
   maincard.innerHTML = "";
   allposts.forEach((post) => {
-    maincard.innerHTML += `  <h2 class="text-center mb-4">Latest Blog Posts</h2>
-            <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <div class="card blog-card">
-                        <img src="/img/WhatsApp Image 2025-01-17 at 18.43.21_78a22f8e (1).png" class="card-img-top" alt="Blog Image">
-                        <div class="card-body">
-                            <h3 class="card-title">${post.title}</h3>
-                            <p class="card-text">
-                              ${post.description}
-                            </p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="post-date">Published on: ${post.Timestamp}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>`;
+    maincard.innerHTML += `  
+<div class="blog-grid">
+<div class="blog-card">
+  <p class="post-date"> <span>Username</span>${post.Timestamp}</p><hr>
+    <img src="${post.userPostImage}" alt="Blog Image">
+    <div class="card-body">
+        <h2 class="card-title">${[post.title]}</h2>
+        <p class="card-text">${post.description}</p>
+    </div>
+</div>
+</div>`;
   });
 };
 renderData();
