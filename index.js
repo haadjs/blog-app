@@ -17,6 +17,8 @@ let imgSrc = document.querySelector("#profileImg");
 let logoutBtn = document.querySelector("#logBtn");
 let logInBtn = document.querySelector("#logInBtn");
 let dashboard = document.querySelector("#dashboard");
+let blog = document.querySelector(".blog-grid");
+let allblogData = [];
 onAuthStateChanged(auth, (user) => {
   if (user) {
     const uid = user.uid;
@@ -55,8 +57,31 @@ let getuserName = async () => {
   const q = query(citiesRef, where("userUid", "==", auth.currentUser.uid));
   const querySnapshot = await getDocs(q);
   querySnapshot.forEach((doc) => {
-    console.log(doc.data());
     userName.innerHTML = `Welcome,${doc.data().username}`;
     imgSrc.src = doc.data().userProfile;
   });
 };
+
+let showAllData = async () => {
+  allblogData.length = 0;
+  const querySnapshot = await getDocs(collection(db, "UserPosts"));
+  querySnapshot.forEach((doc) => {
+    console.log(doc.data());
+    allblogData.push(doc.data());
+  });
+  allblogData.forEach((post) => {
+    blog.innerHTML += `
+    <div class="blog-card">
+              <img src="${post.userPostImage}" alt="Blog Image">
+              <div class="card-content">
+                  <p class="post-date"><span>Username</span> ${post.currenttime}</p>
+                  <h2 class="card-title">${post.title}</h2>
+                  <p class="card-text">${post.description}</p>
+                  <a href="#" class="read-more">Read More →</a>
+              </div>
+          </div>
+      </div>
+  `;
+  });
+};
+showAllData();
