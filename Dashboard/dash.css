@@ -209,6 +209,6 @@ body {
 /* Responsive */
 @media (max-width: 768px) {
   .blog-grid {
-      grid-template-columns: 1fr;
+    grid-template-columns: 1fr;
   }
 }

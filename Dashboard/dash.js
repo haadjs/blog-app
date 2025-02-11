@@ -20,7 +20,7 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 let allposts = [];
-let UserBlogImage;
+let UserBlogImage = ''
 let title = document.querySelector("#title");
 let description = document.querySelector("#description");
 let publishBtn = document.querySelector(".publish");
@@ -95,9 +95,9 @@ let renderData = async () => {
 <div class="blog-grid">
 <div class="blog-card">
   <p class="post-date"> <span>Username</span>${post.currenttime}</p><hr>
-    <img src="${post.userPostImage}" alt="Blog Image">
+    <img id = 'postimg' src="${post.userPostImage}" alt="Blog Image">
     <div class="card-body mt-5">
-        <h2 class="card-title">${[post.title]}</h2>
+        <h2 class="card-title">${post.title}</h2>
         <p class="card-text">${post.description}</p>
     </div>
 </div>

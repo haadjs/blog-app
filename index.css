@@ -1,111 +1,113 @@
-  /* Reset default margin & padding */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  }
+/* Reset default margin & padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
 
-  /* Dark Theme Background */
-  .main {
-    background: #121212;
-  }
+/* Dark Theme Background */
+.main {
+  background: #121212;
+}
 
-  /* Navbar Styling */
-  .navbar {
-    padding: 10px 20px;
-    background-color: #1e1e1e;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  }
+/* Navbar Styling */
+.navbar {
+  padding: 10px 20px;
+  background-color: #1e1e1e;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
 
-  .navbar-brand, .nav-link {
-    color: #ffffff !important;
-  }
+.navbar-brand,
+.nav-link {
+  color: #ffffff !important;
+}
 
-  .nav-link:hover {
-    color: #00bcd4 !important;
-    transform: scale(1.05);
-  }
+.nav-link:hover {
+  color: #00bcd4 !important;
+  transform: scale(1.05);
+}
 
-  /* Profile + Username Container */
-  .profile-container {
-    display: flex;
-    align-items: center;
+/* Profile + Username Container */
+.profile-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Profile Image */
+#profileImg {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Username Styling */
+.username {
+  font-weight: bold;
+  color: #ddd;
+  text-decoration: none;
+}
+
+/* Navbar items spacing */
+.navbar-nav {
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Buttons */
+.nav-item {
+  margin-left: 10px;
+}
+
+/* Greeting Text */
+.greeting {
+  text-align: center;
+  color: #fff;
+  margin-top: 20px;
+}
+
+/* Dashboard Button */
+#dashboard {
+  padding: 10px;
+  background-color: #00bcd4;
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 188, 212, 0.5);
+  border: none;
+  cursor: pointer;
+}
+
+#dashboard:hover {
+  background-color: #0097a7;
+}
+
+/* Responsive: Align items in mobile view */
+@media (max-width: 768px) {
+  .navbar-nav {
+    flex-direction: column;
+    align-items: flex-start;
     gap: 10px;
   }
 
-  /* Profile Image */
-  #profileImg {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #fff;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  }
-
-  /* Username Styling */
-  .username {
-    font-weight: bold;
-    color: #ddd;
-    text-decoration: none;
-  }
-
-  /* Navbar items spacing */
-  .navbar-nav {
-    font-size: 16px;
-    display: flex;
+  .profile-container {
+    flex-direction: row;
     align-items: center;
-    gap: 15px;
+    justify-content: start;
   }
 
-  /* Buttons */
-  .nav-item {
-    margin-left: 10px;
+  #profileImg {
+    width: 35px;
+    height: 35px;
   }
-
-  /* Greeting Text */
-  .greeting {
-    text-align: center;
-    color: #fff;
-    margin-top: 20px;
-  }
-
-  /* Dashboard Button */
-  #dashboard {
-    padding: 10px;
-    background-color: #00bcd4;
-    color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 188, 212, 0.5);
-    border: none;
-    cursor: pointer;
-  }
-
-  #dashboard:hover {
-    background-color: #0097a7;
-  }
-
-  /* Responsive: Align items in mobile view */
-  @media (max-width: 768px) {
-    .navbar-nav {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 10px;
-    }
-
-    .profile-container {
-      flex-direction: row;
-      align-items: center;
-      justify-content: start;
-    }
-
-    #profileImg {
-      width: 35px;
-      height: 35px;
-    }
-  }
-  /* General Reset */
+}
+/* General Reset */
 
 /* Main Container */
 .container {
@@ -200,10 +202,10 @@ h1 {
 /* Responsive Design */
 @media (max-width: 768px) {
   .container {
-      width: 95%;
+    width: 95%;
   }
 
   .blog-grid {
-      grid-template-columns: 1fr;
+    grid-template-columns: 1fr;
   }
 }

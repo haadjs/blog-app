@@ -13,7 +13,7 @@ import {
 
 let Data = [];
 let userName = document.querySelector("#Username");
-let imgSrc = document.querySelector("#profileImg");
+let imgSrc = document.querySelector("#profileImg") || "";
 let logoutBtn = document.querySelector("#logBtn");
 let logInBtn = document.querySelector("#logInBtn");
 let dashboard = document.querySelector("#dashboard");
