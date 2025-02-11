@@ -3,6 +3,8 @@ import {
   collection,
   addDoc,
   getDocs,
+  where,
+  query
 } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
 import {
   signOut,
@@ -12,7 +14,7 @@ import {
 onAuthStateChanged(auth, (user) => {
   if (user) {
     const uid = user.uid;
-    console.log(uid);
+    renderData()
   } else {
     window.location = "/index.html";
   }
@@ -69,8 +71,7 @@ publishBtn.addEventListener("click", async (event) => {
     title: title.value,
     description: description.value,
     userPostImage: UserBlogImage,
-    Timestamp: serverTimestamp(), 
-
+    currenttime: new Date().toLocaleString(),
   });
 
   description.value = "";
@@ -80,24 +81,27 @@ publishBtn.addEventListener("click", async (event) => {
 // Get the image and the name of the user
 let renderData = async () => {
   allposts.length = 0;
-  const querySnapshot = await getDocs(collection(db, "UserPosts"));
+  const citiesRef = collection(db, "UserPosts");
+  const q = query(citiesRef, where("userUid", "==", auth.currentUser.uid));
+  const querySnapshot = await getDocs(q);
   querySnapshot.forEach((doc) => {
-    console.log(doc.data());
+    // console.log(doc.data());
     allposts.unshift(doc.data());
+    console.log(allposts);
   });
   maincard.innerHTML = "";
   allposts.forEach((post) => {
     maincard.innerHTML += `  
 <div class="blog-grid">
 <div class="blog-card">
-  <p class="post-date"> <span>Username</span>${post.Timestamp}</p><hr>
+  <p class="post-date"> <span>Username</span>${post.currenttime}</p><hr>
     <img src="${post.userPostImage}" alt="Blog Image">
-    <div class="card-body">
+    <div class="card-body mt-5">
         <h2 class="card-title">${[post.title]}</h2>
         <p class="card-text">${post.description}</p>
     </div>
 </div>
 </div>`;
   });
+  // Display the user's name and image
 };
-renderData();
