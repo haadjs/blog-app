@@ -103,5 +103,4 @@ let renderData = async () => {
 </div>
 </div>`;
   });
-  // Display the user's name and image
 };
