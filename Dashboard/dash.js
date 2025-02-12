@@ -4,7 +4,7 @@ import {
   addDoc,
   getDocs,
   where,
-  query
+  query,
 } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
 import {
   signOut,
@@ -13,29 +13,30 @@ import {
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    const uid = user.uid;
-    renderData()
+    renderData();
   } else {
     window.location = "/index.html";
   }
 });
+
 let allposts = [];
-let UserBlogImage = ''
+let UserBlogImage = "";
 let title = document.querySelector("#title");
 let description = document.querySelector("#description");
 let publishBtn = document.querySelector(".publish");
 let logoutBtn = document.querySelector("#logoutBtn");
 let maincard = document.querySelector(".cardmain");
+
 logoutBtn.addEventListener("click", () => {
   signOut(auth)
     .then(() => {
       window.location.href = "/Auth/login.html";
     })
     .catch((error) => {
-      // An error happened.
-      alert.error("Sign Out Error:", error.message);
+      alert("Sign Out Error: " + error.message);
     });
 });
+
 // Cloudinary upload widget
 let myWidget = cloudinary.createUploadWidget(
   {
@@ -44,7 +45,6 @@ let myWidget = cloudinary.createUploadWidget(
   },
   (error, result) => {
     if (!error && result && result.event === "success") {
-      console.log("Image Uploaded: ", result.info);
       UserBlogImage = result.info.secure_url;
     }
   }
@@ -76,31 +76,32 @@ publishBtn.addEventListener("click", async (event) => {
 
   description.value = "";
   title.value = "";
+  renderData();
 });
 
-// Get the image and the name of the user
+// Render user posts
 let renderData = async () => {
   allposts.length = 0;
-  const citiesRef = collection(db, "UserPosts");
-  const q = query(citiesRef, where("userUid", "==", auth.currentUser.uid));
+  const postsRef = collection(db, "UserPosts");
+  const q = query(postsRef, where("userUid", "==", auth.currentUser.uid));
   const querySnapshot = await getDocs(q);
+
   querySnapshot.forEach((doc) => {
-    // console.log(doc.data());
     allposts.unshift(doc.data());
-    console.log(allposts);
   });
+
   maincard.innerHTML = "";
   allposts.forEach((post) => {
     maincard.innerHTML += `  
-<div class="blog-grid">
-<div class="blog-card">
-  <p class="post-date"> <span>Username</span>${post.currenttime}</p><hr>
-    <img id = 'postimg' src="${post.userPostImage}" alt="Blog Image">
-    <div class="card-body mt-5">
-        <h2 class="card-title">${post.title}</h2>
-        <p class="card-text">${post.description}</p>
-    </div>
-</div>
-</div>`;
+      <div class="blog-grid">
+        <div class="blog-card">
+          <p class="post-date"> <span>Username</span>${post.currenttime}</p><hr>
+          <img id='postimg' src="${post.userPostImage}" alt="Blog Image">
+          <div class="card-body mt-5">
+            <h2 class="card-title">${post.title}</h2>
+            <p class="card-text">${post.description}</p>
+          </div>
+        </div>
+      </div>`;
   });
 };
