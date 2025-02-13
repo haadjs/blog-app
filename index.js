@@ -19,12 +19,10 @@ let blog = document.querySelector(".blog-grid");
 let allblogData = [];
 let dashDis =document.getElementById("dashboard")
 let existUser = 'unknown';
-const userRef = collection(db, "userData");
-// const q = query(userRef, where("userUid", "==", auth.currentUser.uid));
-const querySnapshot = await getDocs(userRef);
-querySnapshot.forEach((doc) => {
-  existUser = doc.data().username;
-});
+
+
+
+
 onAuthStateChanged(auth, (user) => {
   if (user) {
     logInBtn.style.display = "none";
@@ -36,6 +34,45 @@ onAuthStateChanged(auth, (user) => {
     dashDis.disabled = true;
   }
 });
+
+
+
+// import { onAuthStateChanged } from "firebase/auth";
+// import { collection, query, where, getDocs } from "firebase/firestore";
+
+onAuthStateChanged(auth, async (user) => {
+  if (user) {
+    const userRef = collection(db, "userData");
+    const q = query(userRef, where("userUid", "==", user.uid));
+    try {
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        console.log("User Exists:", doc.data().username);
+        existUser.innerHTML = doc.data().username;
+      });
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  } else {
+    console.log("No user is signed in.");
+  }
+});
+
+
+
+
+
+
+// let existName = async () => {
+// const userRef = collection(db, "userData");
+// const q = query(userRef, where("userUid", "==", auth.currentUser.uid));
+// const querySnapshot = await getDocs(q);
+// querySnapshot.forEach((doc) => {
+//   existUser = doc.data().username;
+// });
+
+// }
+// existName()
 
 dashboard.addEventListener("click", () => {
   window.location.href = "/Dashboard/dash.html";
