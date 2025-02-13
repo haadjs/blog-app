@@ -18,11 +18,6 @@ let dashboard = document.querySelector("#dashboard");
 let blog = document.querySelector(".blog-grid");
 let allblogData = [];
 let dashDis =document.getElementById("dashboard")
-let existUser = 'unknown';
-
-
-
-
 onAuthStateChanged(auth, (user) => {
   if (user) {
     logInBtn.style.display = "none";
@@ -35,44 +30,6 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
-
-
-// import { onAuthStateChanged } from "firebase/auth";
-// import { collection, query, where, getDocs } from "firebase/firestore";
-
-onAuthStateChanged(auth, async (user) => {
-  if (user) {
-    const userRef = collection(db, "userData");
-    const q = query(userRef, where("userUid", "==", user.uid));
-    try {
-      const querySnapshot = await getDocs(q);
-      querySnapshot.forEach((doc) => {
-        console.log("User Exists:", doc.data().username);
-        existUser.innerHTML = doc.data().username;
-      });
-    } catch (error) {
-      console.error("Error fetching user data:", error);
-    }
-  } else {
-    console.log("No user is signed in.");
-  }
-});
-
-
-
-
-
-
-// let existName = async () => {
-// const userRef = collection(db, "userData");
-// const q = query(userRef, where("userUid", "==", auth.currentUser.uid));
-// const querySnapshot = await getDocs(q);
-// querySnapshot.forEach((doc) => {
-//   existUser = doc.data().username;
-// });
-
-// }
-// existName()
 
 dashboard.addEventListener("click", () => {
   window.location.href = "/Dashboard/dash.html";
@@ -108,7 +65,7 @@ let showAllData = async () => {
    allblogData.forEach((post) =>{
     blog.innerHTML +=   `
     <div class="blog-card">
-    <p class="post-date"><span id = "name">${existUser}</span> ${post.currenttime}</p><hr>
+    <p class="post-date"><span id = "name">username</span> ${post.currenttime}</p><hr>
       <img src="${post.userPostImage}" alt="Blog Image">
       <div class="card-content">
         <h2 class="card-title">${post.title}</h2>

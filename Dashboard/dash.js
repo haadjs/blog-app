@@ -85,17 +85,28 @@ let renderData = async () => {
   const postsRef = collection(db, "UserPosts");
   const q = query(postsRef, where("userUid", "==", auth.currentUser.uid));
   const querySnapshot = await getDocs(q);
-
   querySnapshot.forEach((doc) => {
     allposts.unshift(doc.data());
   });
 
+  let exist = 'unknown'
+  const usersRef = collection(db, "userData");
+  const qe = query(usersRef, where("userUid", "==", auth.currentUser.uid));
+  const Snapshot = await getDocs(qe);
+  Snapshot.forEach((doc) => {
+    console.log(doc.data());
+    exist = doc.data().username
+    console.log(exist);
+  });
+
+
+  
   maincard.innerHTML = "";
   allposts.forEach((post) => {
     maincard.innerHTML += `  
       <div class="blog-grid">
         <div class="blog-card">
-          <p class="post-date"> <span>Username</span>${post.currenttime}</p><hr>
+          <p class="post-date"> <span>${exist}</span>${post.currenttime}</p><hr>
           <img id='postimg' src="${post.userPostImage}" alt="Blog Image">
           <div class="card-body mt-5">
             <h2 class="card-title">${post.title}</h2>
