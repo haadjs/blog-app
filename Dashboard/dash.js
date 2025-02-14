@@ -89,29 +89,31 @@ let renderData = async () => {
     allposts.unshift(doc.data());
   });
 
-  let exist = 'unknown'
+  let exist = "unknown";
+  let uploaderImg;
   const usersRef = collection(db, "userData");
   const qe = query(usersRef, where("userUid", "==", auth.currentUser.uid));
   const Snapshot = await getDocs(qe);
   Snapshot.forEach((doc) => {
-    console.log(doc.data());
-    exist = doc.data().username
-    console.log(exist);
+    uploaderImg = doc.data().userProfile;
+    exist = doc.data().username;
   });
 
-
-  
   maincard.innerHTML = "";
   allposts.forEach((post) => {
     maincard.innerHTML += `  
-      <div class="blog-grid">
-        <div class="blog-card">
-          <p class="post-date"> <span>${exist}</span>${post.currenttime}</p><hr>
-          <img id='postimg' src="${post.userPostImage}" alt="Blog Image">
-          <div class="card-body mt-5">
-            <h2 class="card-title">${post.title}</h2>
-            <p class="card-text">${post.description}</p>
-          </div>
+      <div class="blog-card">
+        <div class="post-header" style="display: flex;align-items: center;justify-content: space-between; padding: 5px;" >
+        <div>  <img id="uploaderimg" src="${uploaderImg}" alt="Profile Picture"/>
+          <span id="name">${exist}</span></div>
+          <span class="post-date">${post.currenttime}</span>
+        </div>
+        <hr>
+        <img src="${post.userPostImage}" alt="Blog Image">
+        <div class="card-content">
+          <h2 class="card-title">${post.title}</h2>
+          <p class="card-text">${post.description}</p>
+          <a href="#" class="read-more">Read More →</a>
         </div>
       </div>`;
   });

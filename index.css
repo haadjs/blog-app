@@ -190,7 +190,6 @@
   margin-bottom: 15px;
 }
 
-
 /* Read More Button */
 .read-more {
   display: inline-block;
@@ -213,4 +212,12 @@
   .blog-grid {
     grid-template-columns: 1fr;
   }
+}
+#uploaderimg {
+  width: 40px; /* Image ko chota aur square shape dena */
+  height: 40px;
+  border-radius: 50%; /* Isse image circular ho jayegi */
+  object-fit: cover; /* Image crop nahi hogi, balance maintained rahega */
+  margin-right: 8px; /* Naam aur image ke beech ka gap */
+  vertical-align: middle; /* Image aur text ko proper align karne ke liye */
 }

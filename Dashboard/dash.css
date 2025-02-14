@@ -127,18 +127,19 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 20px;
+  width: 100%;
 }
 
 /* Blog Card */
 .blog-card {
-  /* border-radius: 15px; */
   overflow: hidden;
   transition: all 0.3s ease-in-out;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
   background: #fff;
-  max-width: 100%;
-  margin: auto;
-  padding: 10px;
+  width: 100%;
+  padding: 15px;
+  margin-top: 20px;
+  text-align: start;
 }
 
 .blog-card:hover {
@@ -211,4 +212,12 @@ body {
   .blog-grid {
     grid-template-columns: 1fr;
   }
+}
+#uploaderimg {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 8px;
+  vertical-align: middle;
 }
