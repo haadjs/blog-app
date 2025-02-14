@@ -58,14 +58,22 @@ let getuserName = async () => {
 
 let showAllData = async () => {
   allblogData.length = 0
+  let exit = 'unknknown';
   const querySnapshot = await getDocs(collection(db, "UserPosts"));
   querySnapshot.forEach((doc) => {
     allblogData.push(doc.data());
   });
+  const userRef = collection(db, "userData");
+  const q = query(userRef, where("userUid", "==", auth.currentUser.uid));
+  const Snapshot = await getDocs(q);
+  Snapshot.forEach((doc) => {
+   exit = doc.data().username
+  });
+
    allblogData.forEach((post) =>{
     blog.innerHTML +=   `
     <div class="blog-card">
-    <p class="post-date"><span id = "name">username</span> ${post.currenttime}</p><hr>
+    <p class="post-date"><span id = "name">${exit}</span> ${post.currenttime}</p><hr>
       <img src="${post.userPostImage}" alt="Blog Image">
       <div class="card-content">
         <h2 class="card-title">${post.title}</h2>
