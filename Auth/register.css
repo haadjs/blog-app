@@ -8,18 +8,24 @@ body {
   height: 100vh;
   margin: 0;
 }
-.login-container {
+.register-container {
   background: #1e1e1e;
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   text-align: center;
-  width: 320px;
+  width: 100%;
+  max-width: 400px;
   animation: fadeIn 0.5s ease-in-out;
 }
 h2 {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   font-weight: 600;
+}
+.subtext {
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #bbb;
 }
 .input-group {
   margin-bottom: 15px;
@@ -43,7 +49,7 @@ h2 {
   border-color: #6200ea;
   outline: none;
 }
-.login-btn {
+.register-btn {
   width: 100%;
   padding: 10px;
   background: #6200ea;
@@ -55,22 +61,11 @@ h2 {
   transition: background 0.3s;
   margin-top: 10px;
 }
-.login-btn:hover {
+.register-btn:hover {
   background: #3700b3;
 }
-.signup-text {
-  margin-top: 15px;
-}
-.signup-text a {
-  color: #bb86fc;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-.signup-text a:hover {
-  color: #fff;
-}
 .cloudinary-button {
-  margin-top: 15px;
+  width: 100%;
   padding: 10px;
   background: #03dac6;
   color: white;
@@ -79,9 +74,22 @@ h2 {
   cursor: pointer;
   font-size: 16px;
   transition: background 0.3s;
+  margin-bottom: 10px;
 }
 .cloudinary-button:hover {
   background: #018786;
+}
+.login-text {
+  margin-top: 15px;
+  font-size: 14px;
+}
+.login-text a {
+  color: #bb86fc;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.login-text a:hover {
+  color: #fff;
 }
 @keyframes fadeIn {
   from {
@@ -91,5 +99,10 @@ h2 {
   to {
       opacity: 1;
       transform: translateY(0);
+  }
+}
+@media (max-width: 480px) {
+  .register-container {
+      width: 90%;
   }
 }

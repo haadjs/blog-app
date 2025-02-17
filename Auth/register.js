@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let username = document.querySelector("#username");
   let email = document.querySelector("#email");
   let password = document.querySelector("#password");
-  let submit = document.querySelector(".login-btn");
+  let submit = document.querySelector(".submit");
 
   submit.addEventListener("click", async (event) => {
     event.preventDefault();

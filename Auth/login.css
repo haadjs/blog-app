@@ -14,12 +14,18 @@ body {
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   text-align: center;
-  width: 320px;
+  width: 100%;
+  max-width: 400px;
   animation: fadeIn 0.5s ease-in-out;
 }
 h2 {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   font-weight: 600;
+}
+.subtext {
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #bbb;
 }
 .input-group {
   margin-bottom: 15px;
@@ -53,12 +59,14 @@ h2 {
   cursor: pointer;
   font-size: 16px;
   transition: background 0.3s;
+  margin-top: 10px;
 }
 .login-btn:hover {
   background: #3700b3;
 }
 .signup-text {
   margin-top: 15px;
+  font-size: 14px;
 }
 .signup-text a {
   color: #bb86fc;
@@ -76,5 +84,10 @@ h2 {
   to {
       opacity: 1;
       transform: translateY(0);
+  }
+}
+@media (max-width: 480px) {
+  .login-container {
+      width: 90%;
   }
 }
