@@ -32,16 +32,16 @@ logoutBtn.addEventListener("click", () => {
     .then(() => {
       // Success message after sign-out
       Swal.fire({
-        icon: 'success',
-        title: 'Signed out successfully',
-        text: 'You have been logged out.',
+        icon: "success",
+        title: "Signed out successfully",
+        text: "You have been logged out.",
       });
     })
     .catch((error) => {
       // Error message for sign-out
       Swal.fire({
-        icon: 'error',
-        title: 'Sign Out Error',
+        icon: "error",
+        title: "Sign Out Error",
         text: error.message,
       });
     });
@@ -75,9 +75,9 @@ publishBtn.addEventListener("click", async (event) => {
   if (!title.value || !description.value) {
     // SweetAlert message when fields are empty
     Swal.fire({
-      icon: 'warning',
-      title: 'Missing Fields',
-      text: 'Please fill in all fields.',
+      icon: "warning",
+      title: "Missing Fields",
+      text: "Please fill in all fields.",
     });
     return;
   }
@@ -93,9 +93,9 @@ publishBtn.addEventListener("click", async (event) => {
 
     // Success message after posting
     Swal.fire({
-      icon: 'success',
-      title: 'Post Published',
-      text: 'Your blog post has been successfully published!',
+      icon: "success",
+      title: "Post Published",
+      text: "Your blog post has been successfully published!",
     });
 
     description.value = "";
@@ -104,8 +104,8 @@ publishBtn.addEventListener("click", async (event) => {
   } catch (error) {
     // Error message if the post creation fails
     Swal.fire({
-      icon: 'error',
-      title: 'Error Publishing Post',
+      icon: "error",
+      title: "Error Publishing Post",
       text: error.message,
     });
   }
@@ -147,6 +147,6 @@ let renderData = async () => {
           <p class="card-text">${post.description}</p>
           <a href="#" class="read-more">Read More →</a>
         </div>
-      </div>`; 
+      </div>`;
   });
 };
