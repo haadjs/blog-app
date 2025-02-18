@@ -18,6 +18,7 @@ let dashboard = document.querySelector("#dashboard");
 let blog = document.querySelector(".blog-grid");
 let allblogData = [];
 let dashDis = document.getElementById("dashboard");
+
 onAuthStateChanged(auth, (user) => {
   if (user) {
     logInBtn.style.display = "none";
@@ -40,8 +41,14 @@ logInBtn.addEventListener("click", () => {
 
 logoutBtn.addEventListener("click", () => {
   signOut(auth).catch((error) => {
-    alert("Sign Out Error: " + error.message);
+    // Replacing alert with SweetAlert
+    Swal.fire({
+      icon: 'error',
+      title: 'Sign Out Error',
+      text: error.message
+    });
   });
+  window.location.reload();
 });
 
 let getuserName = async () => {
@@ -53,6 +60,7 @@ let getuserName = async () => {
     imgSrc.src = doc.data().userProfile;
   });
 };
+
 let showAllData = async () => {
   allblogData.length = 0;
   blog.innerHTML = "";

@@ -30,11 +30,22 @@ let maincard = document.querySelector(".cardmain");
 logoutBtn.addEventListener("click", () => {
   signOut(auth)
     .then(() => {
-      window.location.href = "/Auth/login.html";
+      // Success message after sign-out
+      Swal.fire({
+        icon: 'success',
+        title: 'Signed out successfully',
+        text: 'You have been logged out.',
+      });
     })
     .catch((error) => {
-      alert("Sign Out Error: " + error.message);
+      // Error message for sign-out
+      Swal.fire({
+        icon: 'error',
+        title: 'Sign Out Error',
+        text: error.message,
+      });
     });
+  window.location.reload();
 });
 
 // Cloudinary upload widget
@@ -62,21 +73,42 @@ publishBtn.addEventListener("click", async (event) => {
   event.preventDefault();
 
   if (!title.value || !description.value) {
-    alert("Please fill in all fields");
+    // SweetAlert message when fields are empty
+    Swal.fire({
+      icon: 'warning',
+      title: 'Missing Fields',
+      text: 'Please fill in all fields.',
+    });
     return;
   }
 
-  await addDoc(collection(db, "UserPosts"), {
-    userUid: auth.currentUser.uid,
-    title: title.value,
-    description: description.value,
-    userPostImage: UserBlogImage,
-    currenttime: new Date().toLocaleString(),
-  });
+  try {
+    await addDoc(collection(db, "UserPosts"), {
+      userUid: auth.currentUser.uid,
+      title: title.value,
+      description: description.value,
+      userPostImage: UserBlogImage,
+      currenttime: new Date().toLocaleString(),
+    });
 
-  description.value = "";
-  title.value = "";
-  renderData();
+    // Success message after posting
+    Swal.fire({
+      icon: 'success',
+      title: 'Post Published',
+      text: 'Your blog post has been successfully published!',
+    });
+
+    description.value = "";
+    title.value = "";
+    renderData();
+  } catch (error) {
+    // Error message if the post creation fails
+    Swal.fire({
+      icon: 'error',
+      title: 'Error Publishing Post',
+      text: error.message,
+    });
+  }
 });
 
 // Render user posts
@@ -115,6 +147,6 @@ let renderData = async () => {
           <p class="card-text">${post.description}</p>
           <a href="#" class="read-more">Read More →</a>
         </div>
-      </div>`;
+      </div>`; 
   });
 };

@@ -31,29 +31,50 @@ document.addEventListener("DOMContentLoaded", () => {
   submit.addEventListener("click", async (event) => {
     event.preventDefault();
 
+    // Validate if all fields are filled
     if (!username.value || !email.value || !password.value) {
-      alert("Please fill in all fields");
+      Swal.fire({
+        icon: 'warning',
+        title: 'Missing Fields',
+        text: 'Please fill in all fields.',
+      });
       return;
     }
 
     try {
+      // Create user with email and password
       const userCredential = await createUserWithEmailAndPassword(auth, email.value, password.value);
       const user = userCredential.user;
+
+      // Add user data to Firestore
       await addDoc(collection(db, "userData"), {
         userUid: user.uid,
         username: username.value,
         email: email.value,
-        userProfile: profileImageUrl 
+        userProfile: profileImageUrl,
       });
 
       console.log("User created & data stored:", user);
-      alert("Registration successful! Redirecting to login...");
-      window.location.href = "./login.html";
+
+      // Show success alert and redirect
+      Swal.fire({
+        icon: 'success',
+        title: 'Registration Successful!',
+        text: 'Redirecting to login...',
+      }).then(() => {
+        window.location.href = "./login.html";  // Redirect to login page
+      });
     } catch (error) {
+      // Show error alert in case of failure
       console.error("Error creating user:", error.message);
-      alert("Registration failed: " + error.message);
+      Swal.fire({
+        icon: 'error',
+        title: 'Registration Failed',
+        text: 'Error: ' + error.message,
+      });
     }
 
+    // Clear the input fields
     username.value = "";
     email.value = "";
     password.value = "";
